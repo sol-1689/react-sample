@@ -1,0 +1,56 @@
+﻿@using WebApp
+@using Domain.Model
+@using Microsoft.AspNetCore.Http
+@{
+    //string releaseLockUrl = new PathString("/") + "/ReleaseLock";
+    Layout = null;
+}
+@inject ContextPathInfo contextPathInfo
+@inject LoginUserContext loginUserContext
+@inject ApplicationContext applicationContext
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@inject IJsonHelper Json;
+@inject IHttpContextAccessor HttpContextAccessor
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+@*SPA画面用の共通レイアウト。*@
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <script type="text/javascript">
+        @* サーバー設定値のうち、クライアントで必要な値はここに埋め込んでおく。(react側のapp.jsでこれらの値をstoreに登録している。) *@
+        var AppParameters = {
+            @* xsrfトークン *@
+            XsrfToken: "@GetAntiXsrfRequestToken()",
+            @* コンテキストパス *@
+            ContextPath: "@contextPathInfo.ContextPath"
+        }
+
+        @if(loginUserContext?.UserNo != null)
+        {
+            <Text>
+        @* ログイン情報 *@
+        AppParameters.loginUserInfo = @Html.Raw(Json.Serialize(loginUserContext))
+        @* アプリケーション情報（M_Generalの値など） *@
+        AppParameters.applicationInfo = @Html.Raw(Json.Serialize(applicationContext))
+            </Text>
+        }
+    </script>
+
+    <title></title>
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
+

@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\RepositoryImpl\**" />
+    <EmbeddedResource Remove="Common\RepositoryImpl\**" />
+    <None Remove="Common\RepositoryImpl\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\DB\M_Calendar.cs" />
+    <Compile Remove="Common\DB\M_Division.cs" />
+    <Compile Remove="Common\DB\M_Officer.cs" />
+    <Compile Remove="Common\DB\M_OfficerMeeting.cs" />
+    <Compile Remove="Common\DB\M_ResponsibleOfficer.cs" />
+    <Compile Remove="Common\DB\ScheduleTable.cs" />
+    <Compile Remove="Common\DB\T_EvalueImport.cs" />
+    <Compile Remove="Common\DB\T_EventActual.cs" />
+    <Compile Remove="Common\DB\T_EventActualDetail.cs" />
+    <Compile Remove="Common\DB\T_OfficerAttend.cs" />
+    <Compile Remove="Common\DB\T_Schedule.cs" />
+    <Compile Remove="Common\DB\T_ScheduleDetail.cs" />
+    <Compile Remove="Common\DB\T_ScheduleEvent.cs" />
+    <Compile Remove="Common\DB\T_ScheduleEventDetail.cs" />
+    <Compile Remove="Common\DB\T_WorkApprovalStatus.cs" />
+    <Compile Remove="Common\DB\T_WorkApprovalStatusMonth.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.2" />
+    <PackageReference Include="MiniProfiler.Shared" Version="4.1.0" />
+    <PackageReference Include="NLog" Version="4.6.8" />
+    <PackageReference Include="PuppeteerSharp" Version="2.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
+    <PackageReference Include="Unity" Version="5.11.4" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+    <PackageReference Include="Ical.Net" Version="4.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Batch\Service\" />
+    <Folder Include="Batch\Model\" />
+  </ItemGroup>
+
+</Project>

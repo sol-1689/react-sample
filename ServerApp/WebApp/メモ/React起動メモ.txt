@@ -1,0 +1,73 @@
+■フォルダ構成
+React関連のソースを保持したフォルダは「ClientApp」。
+.NETプロジェクトだが、.NET関連の機能は利用しない。
+（VisualStudioでソリューションを開いた際に、ClientAppも表示できるように.NETプロジェクトにしているだけ。）
+
+サーバー側は「ServerApp」に配置している。
+
+
+■デバッグ時の手順
+
+・サーバー側を起動
+→
+(VisualStudioの場合)デバッグの開始
+(vscodeの場合)左メニューの「Run and Debug」(虫のアイコン)をクリック→.NET Core Launch(web)を選択し、開始ボタン
+
+・クライアント側の開発用サーバーを起動（vscodeからのみの実行を想定。）
+→
+ClientAppをcdにして、webpack-devserverを起動する。(node.jsがインストールされている必要がある。)
+上記処理を行うvscodeのタスクを定義している。
+Terminal → Run Task → win-webpack-devserver
+（コンテナなどのLinux内で実行している場合は「webpack-devserver」）
+
+※webpack-devserverを利用する理由
+→js側の再コンパイルなどの手間が省けるので、効率が良くなる。
+https://qiita.com/10mi8o/items/2477f2640291f0ce6687
+（本番環境にはコンパイル後のjsを置くだけなので必要ない。）
+
+webpack-devserverはコンパイルしたjsをメモリ上に保持しているおり、http経由で取得する必要がある。
+リクエストを受け付けるポートは、「ClientApp/webpack.dev.config.js」のdevServerセクションに記述している。
+
+ASP Core側は、定義したリクエストパターン(Controller/Actionなど)にマッチしなかったリクエストを、
+上記webpack-devserverに転送するよう設定している。
+（「Startup.cs」のapp.UseSpa～の箇所。）
+開発時のみ使用する為、env.IsDevelopment()をチェックしている。
+ここのUseProxyToSpaDevelopmentServerに指定するURLのポートは、上記webpack.dev.config.jsの設定と合わせておくこと。
+
+
+■本番用ファイルの発行時
+WebAppを発行すると、reactのコンパイルも実行されるよう設定している。
+（「ServerApp/WebApp/WebApp.csproj」の<Target Name="PublishRunWebpack">タグ内で、
+.NET側のビルド完了後に、クライアント側のビルドコマンド(npm build)を実行するよう指定している。）
+
+npm buildの内容やクライアント側ライブラリの設定は「ClientApp/package.json」に記載されている。
+npm buildには、webpackを利用したビルドコマンドを記述している。(npm buildの実行にはnode.jsが必要)
+
+コンパイルしたjsの配置場所は「ServerApp/WebApp/wwwroot/js」。
+(「ClientApp/webpack.prod.config.js」にて指定している。)
+
+サーバー側では、各機能の起点となるindex.cshtmlで上記jsファイルを参照している。
+(普通にscriptタグで読み込んでいるだけ。)
+
+読み込むjsファイルは以下
+vendor.bundle.js
+→使用するサードパーティー製ライブラリをまとめたもの。
+
+login.js、mainte.js
+→各機能群のjsファイル。
+上記は同時に読み込まない。
+
+
+各jsを読み込んでいるviewファイルは以下になる。
+login.js(ログイン画面) → Views/Login/index.cshtml
+mainte.js(マスタメンテ系画面) → Views/MainteTop/index.cshtml
+
+
+jsファイルを分割している理由
+→1つにまとめる事も出来るが、全ての画面を作成するコードが含む為、ファイルサイズが大きくなってしまう。
+一般ユーザーはマスタメンテを使用しないし、不要なコードを読み込んでログイン画面の表示が遅くなるのもよくない。
+その為、必要な画面だけを含んだファイルとなるように分割した。
+
+分割したjsファイルを作成する設定は、「ClientApp/webpack.base.config.js」のentryセクションで定義
+している。
+

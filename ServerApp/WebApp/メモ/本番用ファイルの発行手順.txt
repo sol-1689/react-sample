@@ -1,0 +1,12 @@
+
+
+■本番用ファイルの発行手順
+コマンドプロンプトにて以下を実行
+
+cd /ソースフォルダ/ServerApp/OfficerWorkManagement
+dotnet publish "OfficerWorkManagement.csproj" -c Release -o bin/publish
+
+
+/ソースフォルダ/ServerApp/OfficerWorkManagement/bin/publish フォルダ内に発行後の各ファイルが存在している。
+
+
