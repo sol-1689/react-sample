@@ -1,0 +1,48 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "debug": "webpack serve --config webpack.dev.config.js --node-env development",
+    "build": "webpack --config webpack.prod.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.16.10",
+    "@babel/preset-env": "7.16.10",
+    "@babel/preset-react": "7.16.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+    "babel-loader": "8.2.3",
+    "lodash-es": "4.17.21",
+    "react-refresh": "^0.11.0",
+    "terser-webpack-plugin": "5.3.0",
+    "webpack": "5.66.0",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-middleware": "5.3.0",
+    "webpack-dev-server": "4.7.3",
+    "webpack-hot-middleware": "2.25.1",
+    "webpack-merge": "5.8.0"
+  },
+  "dependencies": {
+    "@date-io/core": "2.11.0",
+    "@date-io/date-fns": "2.11.0",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@mui/icons-material": "5.3.0",
+    "@mui/lab": "5.0.0-alpha.65",
+    "@mui/material": "5.3.0",
+    "@mui/styles": "5.3.0",
+    "@reduxjs/toolkit": "1.7.1",
+    "axios": "0.25.0",
+    "core-js": "3.20.3",
+    "date-fns": "2.28.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "7.2.6",
+    "react-router-dom": "5.2.0",
+    "redux": "4.1.2",
+    "regenerator-runtime": "0.13.9",
+    "whatwg-fetch": "3.6.2",
+    "yup": "0.32.11"
+  }
+}
