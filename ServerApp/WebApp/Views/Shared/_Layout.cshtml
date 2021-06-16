@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    //string releaseLockUrl = new PathString("/") + "/ReleaseLock";
+    Layout = null;
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@inject IJsonHelper Json;
+@inject IHttpContextAccessor HttpContextAccessor
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+@RenderBody()

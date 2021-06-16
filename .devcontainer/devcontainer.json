@@ -1,0 +1,49 @@
+{
+	"name": "reactsample",
+	"dockerFile": "./Dockerfile",
+
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	"build": {
+		"args": {
+			// プロキシ情報
+			"http_proxy": "",
+			"https_proxy": "",
+			"NO_PROXY": "localhost,127.0.0.1"
+		}
+	},
+	"runArgs": [
+		// コンテナ内でのLinuxユーザー。指定しない場合はrootになる。
+		// Dockerファイル内で作成したユーザーを指定する事。その際、ホストがLinuxOSの場合は、UID/GIDはホスト側に存在するユーザーの値を指定する。
+		"-u", "root",
+
+		// ASP Coreの起動ポート 
+		"-e", "ASPNETCORE_Kestrel__Endpoints__Http__Url=http://*:5001",
+		"-e", "ASPNETCORE_ENVIRONMENT=DockerDevelopment",
+		"-e", "ConnectionStrings__DB=Data Source=container_host,1435;Initial Catalog=owmlocal;User ID=localuser;Password=Passw0rd01!;Max Pool Size=700;trustServerCertificate=true;Trusted_Connection=False;Encrypt=False;MultipleActiveResultSets=True;ConnectRetryCount=6;ConnectRetryInterval=5;",
+		"-e", "ConnectionStrings__DB_EV=Data Source=container_host,1435;Initial Catalog=evSchedule;User ID=localuser;Password=Passw0rd01!;Max Pool Size=700;trustServerCertificate=true;Trusted_Connection=False;Encrypt=False;MultipleActiveResultSets=True;ConnectRetryCount=6;ConnectRetryInterval=5;"
+		// Httpsの場合 
+		// "-v", "${env:HOME}${env:USERPROFILE}/.aspnet/https:/home/vscode/.aspnet/https",
+		// "-e", "ASPNETCORE_Kestrel__Endpoints__Https__Url=https://*:5001",
+		// "-e", "ASPNETCORE_Kestrel__Certificates__Default__Password=SecurePwdGoesHere",
+		// "-e", "ASPNETCORE_Kestrel__Certificates__Default__Path=/home/vscode/.aspnet/https/aspnetapp.pfx",
+		
+	],
+
+	// Asp Coreの実行ポートと、webpack-devserverの実行ポートをホスト側とマッピングする。
+	"appPort": ["5000:5000", "5001:5001", "8083:8083"],
+	
+	// コンテナ側にインストールするVSCodeのExtensionを指定。
+	// 「code --list-extensions」 でインストールされた拡張機能の一覧を確認できる。
+	"extensions": [
+		"ms-dotnettools.csharp",
+		//"VisualStudioExptTeam.vscodeintellicode",
+		"k--kato.docomment",
+		"donjayamanne.githistory"
+	],
+	// コンテナ起動時に実行するコマンド。必要パッケージをインストールしておく。
+	// 末尾のコマンドは、ホスト側のIPを「container_host」というホスト名でhostsファイルに追記している。(ホストで起動してるテストDBに接続する際に利用する想定。)
+	"postCreateCommand": "echo `ip route | awk 'NR==1 {print $3}'` container_host >> /etc/hosts && cd ClientApp && yarn install"
+}

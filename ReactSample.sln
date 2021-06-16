@@ -1,0 +1,101 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "ServerApp\WebApp\WebApp.csproj", "{057F5ED3-2CFF-422C-A310-F77C637162E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLib", "ServerApp\CommonLib\CommonLib.csproj", "{CADC48E2-09FA-4056-85D9-75A4212DDCE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "ServerApp\Domain\Domain.csproj", "{C08E7F5F-EB24-4CD0-A4D0-ACE2A2C76D49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp", "ClientApp\ClientApp.csproj", "{E3BB0250-0F60-4899-BACD-A7156A07C8BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp_IntegrationTests", "ServerApp\WebApp_IntegrationTests\WebApp_IntegrationTests.csproj", "{6717C745-7CD2-4101-9421-1388BA1395FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB_Docker", "DB_Docker", "{DD1CCA1F-5505-4F74-ABD8-2C6F9CE1D2C4}"
+	ProjectSection(SolutionItems) = preProject
+		ServerApp\DB_Docker\.gitignore = ServerApp\DB_Docker\.gitignore
+		ServerApp\DB_Docker\docker-compose.yml = ServerApp\DB_Docker\docker-compose.yml
+		ServerApp\DB_Docker\start.bat = ServerApp\DB_Docker\start.bat
+		ServerApp\DB_Docker\stop.bat = ServerApp\DB_Docker\stop.bat
+		ServerApp\DB_Docker\メモ.txt = ServerApp\DB_Docker\メモ.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlserver", "sqlserver", "{EBA76D2B-48C1-43C9-A133-D80DD0CB23D2}"
+	ProjectSection(SolutionItems) = preProject
+		ServerApp\DB_Docker\sqlserver\.dockerignore = ServerApp\DB_Docker\sqlserver\.dockerignore
+		ServerApp\DB_Docker\sqlserver\common.env = ServerApp\DB_Docker\sqlserver\common.env
+		ServerApp\DB_Docker\sqlserver\Dockerfile = ServerApp\DB_Docker\sqlserver\Dockerfile
+		ServerApp\DB_Docker\sqlserver\Dockerfile.testing = ServerApp\DB_Docker\sqlserver\Dockerfile.testing
+		ServerApp\DB_Docker\sqlserver\entrypoint.sh = ServerApp\DB_Docker\sqlserver\entrypoint.sh
+		ServerApp\DB_Docker\sqlserver\start-up.sh = ServerApp\DB_Docker\sqlserver\start-up.sh
+		ServerApp\DB_Docker\sqlserver\wait-for-it.sh = ServerApp\DB_Docker\sqlserver\wait-for-it.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-data", "init-data", "{9ACA041F-517D-4345-B9CB-88924B7FE22C}"
+	ProjectSection(SolutionItems) = preProject
+		ServerApp\DB_Docker\sqlserver\init-data\create_common_data.sql = ServerApp\DB_Docker\sqlserver\init-data\create_common_data.sql
+		ServerApp\DB_Docker\sqlserver\init-data\create_db.sql = ServerApp\DB_Docker\sqlserver\init-data\create_db.sql
+		ServerApp\DB_Docker\sqlserver\init-data\create_table.sql = ServerApp\DB_Docker\sqlserver\init-data\create_table.sql
+		ServerApp\DB_Docker\sqlserver\init-data\create_trigger.sql = ServerApp\DB_Docker\sqlserver\init-data\create_trigger.sql
+		ServerApp\DB_Docker\sqlserver\init-data\create_type.sql = ServerApp\DB_Docker\sqlserver\init-data\create_type.sql
+		ServerApp\DB_Docker\sqlserver\init-data\create_view.sql = ServerApp\DB_Docker\sqlserver\init-data\create_view.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "additional", "additional", "{90123609-AFF5-4FA0-8C55-633793BC6421}"
+	ProjectSection(SolutionItems) = preProject
+		ServerApp\DB_Docker\sqlserver\init-data\additional\1905_test_data.sql = ServerApp\DB_Docker\sqlserver\init-data\additional\1905_test_data.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_UnitTests", "ServerApp\WebApp_UnitTests\WebApp_UnitTests.csproj", "{D6E0FF5B-3D94-4333-8F72-76FBC819DCD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCommon", "TestCommon\TestCommon.csproj", "{E6D362ED-DC58-4BB4-A501-B8AE2216C024}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{057F5ED3-2CFF-422C-A310-F77C637162E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057F5ED3-2CFF-422C-A310-F77C637162E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057F5ED3-2CFF-422C-A310-F77C637162E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057F5ED3-2CFF-422C-A310-F77C637162E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADC48E2-09FA-4056-85D9-75A4212DDCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADC48E2-09FA-4056-85D9-75A4212DDCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADC48E2-09FA-4056-85D9-75A4212DDCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADC48E2-09FA-4056-85D9-75A4212DDCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C08E7F5F-EB24-4CD0-A4D0-ACE2A2C76D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C08E7F5F-EB24-4CD0-A4D0-ACE2A2C76D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C08E7F5F-EB24-4CD0-A4D0-ACE2A2C76D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C08E7F5F-EB24-4CD0-A4D0-ACE2A2C76D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3BB0250-0F60-4899-BACD-A7156A07C8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3BB0250-0F60-4899-BACD-A7156A07C8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3BB0250-0F60-4899-BACD-A7156A07C8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3BB0250-0F60-4899-BACD-A7156A07C8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6717C745-7CD2-4101-9421-1388BA1395FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6717C745-7CD2-4101-9421-1388BA1395FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6717C745-7CD2-4101-9421-1388BA1395FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6717C745-7CD2-4101-9421-1388BA1395FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E0FF5B-3D94-4333-8F72-76FBC819DCD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E0FF5B-3D94-4333-8F72-76FBC819DCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E0FF5B-3D94-4333-8F72-76FBC819DCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E0FF5B-3D94-4333-8F72-76FBC819DCD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6D362ED-DC58-4BB4-A501-B8AE2216C024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6D362ED-DC58-4BB4-A501-B8AE2216C024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6D362ED-DC58-4BB4-A501-B8AE2216C024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6D362ED-DC58-4BB4-A501-B8AE2216C024}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EBA76D2B-48C1-43C9-A133-D80DD0CB23D2} = {DD1CCA1F-5505-4F74-ABD8-2C6F9CE1D2C4}
+		{9ACA041F-517D-4345-B9CB-88924B7FE22C} = {EBA76D2B-48C1-43C9-A133-D80DD0CB23D2}
+		{90123609-AFF5-4FA0-8C55-633793BC6421} = {9ACA041F-517D-4345-B9CB-88924B7FE22C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9681417D-5DA4-459D-A256-AD5735A87B36}
+	EndGlobalSection
+EndGlobal

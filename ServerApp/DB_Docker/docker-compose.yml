@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+    owm_db:
+        build: 
+            context: ./sqlserver/
+            dockerfile: Dockerfile
+        container_name: owm_db
+        hostname: owm_db
+        ports:
+            - 1435:1433
+        networks: [owm_db]
+        volumes:
+            - ./sqlserver/init-data:/init-data
+        env_file:
+            - ./sqlserver/common.env
+networks:
+    owm_db:
+
+
+

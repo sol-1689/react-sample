@@ -1,0 +1,26 @@
+﻿@* メンテ系画面 *@
+@{
+    Layout = "_SpaLayout"; //SPA用のレイアウトを使用
+}
+
+<div>
+    <div id="app">
+
+    </div>
+
+    @*jsの読み込むは埋め込み対象のdivの前に書いたらダメ*@
+    @*開発環境*@
+    <environment include="Development">
+        @*「Startup.csのUseProxyToSpaDevelopmentServerで指定したURL/src」というURLにアクセスする。
+            事前にwebpack-devserverを立ち上げるておくこと。ClientAppをカレントフォルダにして「npm run debug」*@
+        @*重複処理をまとめたファイル*@
+        <script src="/vendor.bundle.js"></script>
+        <script src="/mainte.bundle.js"></script>
+    </environment>
+
+    @*本番環境*@
+    <environment exclude="Development">
+        <script src="~/js/vendor.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/mainte.bundle.js" asp-append-version="true"></script>
+    </environment>
+</div>

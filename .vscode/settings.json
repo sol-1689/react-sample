@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true, 
+        "**/ServerApp/*/bin/**": true,
+        "**/ServerApp/*/obj/**": true,
+        "**/ClientApp/bin/**": true,
+        "**/ClientApp/obj/**": true,
+        "**/TestResults/**": true,
+        "**/.vs/**": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/ServerApp/*/bin/**": true,
+        "**/ServerApp/*/obj/**": true,
+        "**/ClientApp/bin/**": true,
+        "**/ClientApp/obj/**": true,
+        "**/DB_Docker/sqlserver/init-data/**": true,
+        "**/DB_Docker/sqlserver/mssql-db/**": true,
+        "**/TestResults/**": true,
+        "**/.vs/**": true
+    } 
+}
