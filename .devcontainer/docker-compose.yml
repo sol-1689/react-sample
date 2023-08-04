@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  workspace:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/workspace/:delegated
+    ports: 
+      - 5000:5000
+      - 5001:5001
+      - 8083:8083
+    # プロセスが終了してコンテナが終了してしまわないように上書きする
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    environment:
+      ASPNETCORE_Kestrel__Endpoints__Http__Url: http://*:5001
+      ASPNETCORE_ENVIRONMENT: DockerDevelopment
+      ConnectionStrings__DB: Data Source=owm_db,1435;Initial Catalog=owmlocal;User ID=localuser;Password=Passw0rd01!;Max Pool Size=700;trustServerCertificate=true;Trusted_Connection=False;Encrypt=False;MultipleActiveResultSets=True;ConnectRetryCount=6;ConnectRetryInterval=5;
+
+  # SQLServer
+  mydb:
+    build:
+        context: ../ServerApp/DB_Docker/sqlserver
+        dockerfile: Dockerfile
+    container_name: owm_db
+    hostname: owm_db
+    environment:
+      MSSQL_SA_PASSWORD: Jko3va-D9821jhsvGD
+      MSSQL_COLLATION: JAPANESE_CI_AS
+      ACCEPT_EULA: Y
+      TZ: 'Asia/Tokyo'
+    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ../ServerApp/DB_Docker/sqlserver/init-data:/init-data:delegated
+    ports:
+      - 1435:1433
