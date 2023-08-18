@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   app:
@@ -23,13 +23,9 @@ services:
     build:
         context: ../ServerApp/DB_Docker/sqlserver
         dockerfile: Dockerfile
-    environment:
-      MSSQL_SA_PASSWORD: Jko3va-D9821jhsvGD
-      MSSQL_COLLATION: JAPANESE_CI_AS
-      ACCEPT_EULA: Y
-      TZ: 'Asia/Tokyo'
-    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ../ServerApp/DB_Docker/sqlserver/init-data:/init-data:delegated
+    env_file:
+      - ../ServerApp/DB_Docker/sqlserver/common.env
     ports:
       - 1435:1433
