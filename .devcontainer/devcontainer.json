@@ -1,9 +1,10 @@
 {
 	"name": "reactsample",
 	//"dockerFile": "./Dockerfile",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "workspace",
-    "workspaceFolder": "/var/workspace",
+	"dockerComposeFile": ["docker-compose.yml"],
+	"service": "app",
+    "workspaceFolder": "/workspace",
+	"shutdownAction": "stopCompose",
 
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
