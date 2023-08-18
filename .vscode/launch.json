@@ -19,10 +19,10 @@
             },
             "env": {
                 //この設定値で読み込むconfigが変わる。
-                "ASPNETCORE_ENVIRONMENT": "Development", 
+                "ASPNETCORE_ENVIRONMENT": "DockerDevelopment", 
                 //Httpでサイトを開いたことがある状態で、HttpsのURLにアクセスする場合は、一度localhostのCookieを削除する事。（逆も同じ）
                 //(Cookieのsecureの設定が異なるので、cookieが送信されずログイン等が出来なくなる為)
-                "ASPNETCORE_URLS": "https://localhost:5441"
+                "ASPNETCORE_URLS": "http://localhost:5001"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/ServerApp/WebApp/Views"
