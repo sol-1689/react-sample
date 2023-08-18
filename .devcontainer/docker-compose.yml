@@ -23,6 +23,7 @@ services:
     build:
         context: ../ServerApp/DB_Docker/sqlserver
         dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - ../ServerApp/DB_Docker/sqlserver/init-data:/init-data:delegated
     env_file:
